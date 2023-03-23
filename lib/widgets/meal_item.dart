@@ -50,18 +50,6 @@ class MealItem extends StatelessWidget {
                       width: double.infinity,
                       height: 250,
                       fit: BoxFit.cover,
-                      loadingBuilder: (context, child, loadingProgress) {
-                        if (loadingProgress?.cumulativeBytesLoaded ==
-                            loadingProgress?.expectedTotalBytes) {
-                          return child;
-                        }
-                        return Container(
-                          width: double.infinity,
-                          height: 250,
-                          alignment: Alignment.center,
-                          child: const CircularProgressIndicator(),
-                        );
-                      },
                     ),
                   ),
                   Positioned(

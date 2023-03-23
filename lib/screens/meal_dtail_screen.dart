@@ -46,18 +46,6 @@ class _MealDetailScreenState extends State<MealDetailScreen> {
                       width: double.infinity,
                       height: size.height * 0.35,
                       fit: BoxFit.cover,
-                      loadingBuilder: (context, child, loadingProgress) {
-                        if (loadingProgress?.cumulativeBytesLoaded ==
-                            loadingProgress?.expectedTotalBytes) {
-                          return child;
-                        }
-                        return Container(
-                          width: double.infinity,
-                          height: size.height * 0.35,
-                          alignment: Alignment.center,
-                          child: const CircularProgressIndicator(),
-                        );
-                      },
                     ),
                     Positioned(
                       bottom: 0,
@@ -128,7 +116,7 @@ class _MealDetailScreenState extends State<MealDetailScreen> {
                 ),
                 Container(
                   width: double.infinity,
-                  margin: const EdgeInsets.symmetric(horizontal: 8.0),
+                  margin: const EdgeInsets.fromLTRB(8.0, 0, 8.0, 16),
                   padding: const EdgeInsets.all(10.0),
                   decoration: BoxDecoration(
                     border: Border.all(),
@@ -175,35 +163,7 @@ class _MealDetailScreenState extends State<MealDetailScreen> {
               ],
             ),
           ),
-          Positioned(top: 0, left: 0, right: 0, child: appbar(meal)),
         ],
-      ),
-    );
-  }
-
-  Widget appbar(meal) {
-    var opacity = 0.0;
-    try {
-      if (scrollController.hasClients) {
-        var hieghtVisible =
-            (offsetY - MediaQuery.of(context).viewPadding.top) * -1;
-        opacity = (hieghtVisible / widgeheight).clamp(0.0, 1.0);
-      }
-    } catch (e) {
-      return Container();
-    }
-    return AnimatedOpacity(
-      duration: const Duration(milliseconds: 100),
-      opacity: opacity,
-      child: IgnorePointer(
-        ignoring: opacity == 0,
-        child: AppBar(
-          backgroundColor: Colors.black,
-          title: Text(
-            meal.title,
-            style: const TextStyle(color: Colors.white, fontSize: 18),
-          ),
-        ),
       ),
     );
   }
