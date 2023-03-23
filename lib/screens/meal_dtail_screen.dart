@@ -32,6 +32,15 @@ class _MealDetailScreenState extends State<MealDetailScreen> {
     var size = MediaQuery.of(context).size;
 
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.amber,
+        onPressed: () {
+          Navigator.pop(context, id);
+        },
+        child: const Icon(
+          Icons.delete,
+        ),
+      ),
       body: Stack(
         children: [
           SingleChildScrollView(

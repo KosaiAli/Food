@@ -4,24 +4,29 @@ import '../screens/meal_dtail_screen.dart';
 import '../models/meal.dart';
 
 class MealItem extends StatelessWidget {
-  const MealItem({
-    super.key,
-    required this.id,
-    required this.title,
-    required this.imageUrl,
-    required this.duration,
-    required this.complexity,
-    required this.affordability,
-  });
+  const MealItem(
+      {super.key,
+      required this.id,
+      required this.title,
+      required this.imageUrl,
+      required this.duration,
+      required this.complexity,
+      required this.affordability,
+      required this.removeMeal});
   final String id;
   final String title;
   final String imageUrl;
   final int duration;
   final Complexity complexity;
   final Affordability affordability;
-
+  final Function removeMeal;
   void selectMeal(context) {
-    Navigator.pushNamed(context, MealDetailScreen.routeName, arguments: id);
+    Navigator.pushNamed(context, MealDetailScreen.routeName, arguments: id)
+        .then((mealID) {
+      if (mealID != null) {
+        removeMeal(mealID);
+      }
+    });
   }
 
   @override
