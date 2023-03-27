@@ -4,15 +4,16 @@ import '../screens/meal_dtail_screen.dart';
 import '../models/meal.dart';
 
 class MealItem extends StatelessWidget {
-  const MealItem(
-      {super.key,
-      required this.id,
-      required this.title,
-      required this.imageUrl,
-      required this.duration,
-      required this.complexity,
-      required this.affordability,
-      required this.removeMeal});
+  const MealItem({
+    super.key,
+    required this.id,
+    required this.title,
+    required this.imageUrl,
+    required this.duration,
+    required this.complexity,
+    required this.affordability,
+    required this.removeMeal,
+  });
   final String id;
   final String title;
   final String imageUrl;
@@ -50,33 +51,39 @@ class MealItem extends StatelessWidget {
                     borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(15),
                         topRight: Radius.circular(15)),
-                    child: Image.network(
-                      imageUrl,
-                      width: double.infinity,
-                      height: 250,
-                      fit: BoxFit.cover,
+                    child: Hero(
+                      tag: imageUrl,
+                      child: Image.network(
+                        imageUrl,
+                        width: double.infinity,
+                        height: 250,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                   Positioned(
                     bottom: 20,
                     right: 0,
-                    child: Container(
-                      width: 300,
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 5, horizontal: 20),
-                      decoration: const BoxDecoration(
-                          color: Colors.black38,
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(10),
-                            bottomLeft: Radius.circular(10),
-                          )),
-                      child: Text(
-                        title,
-                        textAlign: TextAlign.center,
-                        style:
-                            const TextStyle(color: Colors.white, fontSize: 26),
-                        overflow: TextOverflow.fade,
-                        softWrap: true,
+                    child: Hero(
+                      tag: title,
+                      child: Container(
+                        width: 300,
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 5, horizontal: 20),
+                        decoration: const BoxDecoration(
+                            color: Colors.black38,
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(10),
+                              bottomLeft: Radius.circular(10),
+                            )),
+                        child: Text(
+                          title,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                              color: Colors.white, fontSize: 26),
+                          overflow: TextOverflow.fade,
+                          softWrap: true,
+                        ),
                       ),
                     ),
                   )

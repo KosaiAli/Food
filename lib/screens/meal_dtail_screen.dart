@@ -50,11 +50,14 @@ class _MealDetailScreenState extends State<MealDetailScreen> {
               children: [
                 Stack(
                   children: [
-                    Image.network(
-                      meal.imageUrl,
-                      width: double.infinity,
-                      height: size.height * 0.35,
-                      fit: BoxFit.cover,
+                    Hero(
+                      tag: meal.imageUrl,
+                      child: Image.network(
+                        meal.imageUrl,
+                        width: double.infinity,
+                        height: size.height * 0.35,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                     Positioned(
                       bottom: 0,
@@ -72,18 +75,21 @@ class _MealDetailScreenState extends State<MealDetailScreen> {
                           } catch (e) {
                             log(e.toString());
                           }
-                          return Container(
-                            width: size.width,
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 10, horizontal: 20),
-                            decoration: const BoxDecoration(
-                              color: Colors.black38,
-                            ),
-                            child: Text(
-                              meal.title,
-                              textAlign: TextAlign.left,
-                              style: const TextStyle(
-                                  color: Colors.white, fontSize: 26),
+                          return Hero(
+                            tag: meal.title,
+                            child: Container(
+                              width: size.width,
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 10, horizontal: 20),
+                              decoration: const BoxDecoration(
+                                color: Colors.black38,
+                              ),
+                              child: Text(
+                                meal.title,
+                                textAlign: TextAlign.left,
+                                style: const TextStyle(
+                                    color: Colors.white, fontSize: 26),
+                              ),
                             ),
                           );
                         },

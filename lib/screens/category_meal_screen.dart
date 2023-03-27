@@ -14,13 +14,13 @@ class CategoryMealScreen extends StatefulWidget {
 }
 
 class _CategoryMealScreenState extends State<CategoryMealScreen> {
-  var _loadedInitData = false;
+  bool loadedInitData = false;
   late String title;
   late List<Meal> categoryMeals;
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    if (!_loadedInitData) {
+    if (!loadedInitData) {
       final arguments = ModalRoute.of(context)?.settings.arguments as Map;
       title = arguments['title'];
       final categoryId = arguments['id'];
