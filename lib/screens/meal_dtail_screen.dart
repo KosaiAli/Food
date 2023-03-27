@@ -5,9 +5,10 @@ import 'package:flutter/material.dart';
 import '../dummy_data.dart';
 
 class MealDetailScreen extends StatefulWidget {
-  const MealDetailScreen({super.key});
+  const MealDetailScreen(this.toggleFavorite, this.isFavorite, {super.key});
   static const String routeName = 'MealDetailScreen';
-
+  final Function toggleFavorite;
+  final Function isFavorite;
   @override
   State<MealDetailScreen> createState() => _MealDetailScreenState();
 }
@@ -35,10 +36,10 @@ class _MealDetailScreenState extends State<MealDetailScreen> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.amber,
         onPressed: () {
-          Navigator.pop(context, id);
+          widget.toggleFavorite(id);
         },
-        child: const Icon(
-          Icons.delete,
+        child: Icon(
+          widget.isFavorite(id) ? Icons.favorite : Icons.favorite_border,
         ),
       ),
       body: Stack(

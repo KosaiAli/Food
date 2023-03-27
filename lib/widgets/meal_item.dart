@@ -4,7 +4,8 @@ import '../screens/meal_dtail_screen.dart';
 import '../models/meal.dart';
 
 class MealItem extends StatelessWidget {
-  const MealItem({
+  const MealItem(
+    this.refresh, {
     super.key,
     required this.id,
     required this.title,
@@ -12,7 +13,6 @@ class MealItem extends StatelessWidget {
     required this.duration,
     required this.complexity,
     required this.affordability,
-    required this.removeMeal,
   });
   final String id;
   final String title;
@@ -20,13 +20,11 @@ class MealItem extends StatelessWidget {
   final int duration;
   final Complexity complexity;
   final Affordability affordability;
-  final Function removeMeal;
+  final Function refresh;
   void selectMeal(context) {
     Navigator.pushNamed(context, MealDetailScreen.routeName, arguments: id)
         .then((mealID) {
-      if (mealID != null) {
-        removeMeal(mealID);
-      }
+      refresh();
     });
   }
 
